@@ -49,7 +49,7 @@ void normalItem_qualityAndSellInDecrease() {
 
         assertEquals(0, items[0].quality);
     }
-
+//Special Cases
     @Test
     void agedBrie_increasesInQuality() {
         Item[] items = {
@@ -60,6 +60,43 @@ void normalItem_qualityAndSellInDecrease() {
 
         assertEquals(4, items[0].quality);
     }
+
+    @Test
+    void agedBrie_qualityNeverAbove50() {
+        Item[] items = {
+                new Item("Aged Brie", 2, 50)
+        };
+
+        new GildedRose(items).updateQuality();
+
+        assertEquals(50, items[0].quality);
+    }
+
+    // Backstage passes to a TAFKAL80ETC concert
+    @Test
+    void backstagePasses_increaseBy2When10DaysLeft() {
+        Item[] items = {
+                new Item("Backstage passes to a TAFKAL80ETC concert", 10, 20)
+        };
+
+        new GildedRose(items).updateQuality();
+
+        assertEquals(22, items[0].quality);
+    }
+
+    @Test
+    void backstagePasses_qualityDropsToZeroAfterConcert() {
+        Item[] items = {
+                new Item("Backstage passes to a TAFKAL80ETC concert", 0, 20)
+        };
+
+        new GildedRose(items).updateQuality();
+
+        assertEquals(0, items[0].quality);
+    }
+
+
+
 
 
 
