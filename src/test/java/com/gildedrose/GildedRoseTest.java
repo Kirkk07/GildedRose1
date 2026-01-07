@@ -95,6 +95,19 @@ void normalItem_qualityAndSellInDecrease() {
         assertEquals(0, items[0].quality);
     }
 
+    @Test
+    void sulfuras_neverChanges() {
+        Item[] items = {
+                new Item("Sulfuras, Hand of Ragnaros", 0, 80)
+        };
+
+        new GildedRose(items).updateQuality();
+
+        assertEquals(0, items[0].sellIn);
+        assertEquals(80, items[0].quality);
+    }
+
+
 
 
 
