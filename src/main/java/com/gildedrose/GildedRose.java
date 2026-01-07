@@ -4,12 +4,41 @@ class GildedRose {
     private static final String AGED_BRIE = "Aged Brie";
     private static final String BACKSTAGE = "Backstage passes to a TAFKAL80ETC concert";
     private static final String SULFURAS = "Sulfuras, Hand of Ragnaros";
+    private static final String DexterityVest = "+5 Dexterity Vest";
+    private static final String elixir = "Elixir of the Mongoose";
+    //+5 Dexterity Vest - Elixir of the Mongoose are  or any other items are normal items.
     Item[] items;
 
     public GildedRose(Item[] items) {
         this.items = items;
     }
 
+
+
+    public void updateQuality() {
+        for (int i = 0; i < items.length; i++) {
+            updateItem(items[i]);
+        }
+    }
+    private void updateItem(Item item) {
+        if (isNormalItem(item)) {
+            updateNormalItem(item);
+        }
+    }
+    private boolean isNormalItem(Item item) {
+        return item.name.equals(elixir)
+                || item.name.equals(DexterityVest);
+
+    }
+
+    private void updateNormalItem(Item item) {
+        if (item.quality > 0) {
+            item.quality = item.quality - 1;
+        }
+    }
+
+
+}
 //    public void updateQuality() {
 //        for (int i = 0; i < items.length; i++) {
 //            if (!items[i].name.equals("Aged Brie")
@@ -62,4 +91,3 @@ class GildedRose {
 //            }
 //        }
 //    }
-}
