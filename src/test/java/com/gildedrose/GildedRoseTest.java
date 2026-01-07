@@ -39,6 +39,17 @@ void normalItem_qualityAndSellInDecrease() {
         assertEquals(-1, items[0].sellIn);
         assertEquals(8, items[0].quality);
     }
+    @Test
+    void quality_neverNegative() {
+        Item[] items = {
+                new Item("Normal Item", 5, 0)
+        };
+
+        new GildedRose(items).updateQuality();
+
+        assertEquals(0, items[0].quality);
+    }
+
 
 
 
