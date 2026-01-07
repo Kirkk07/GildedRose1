@@ -50,6 +50,20 @@ void normalItem_qualityAndSellInDecrease() {
         assertEquals(0, items[0].quality);
     }
 
+    @Test
+    void agedBrie_increasesInQuality() {
+        Item[] items = {
+                new Item("Aged Brie", 2, 3)
+        };
+
+        new GildedRose(items).updateQuality();
+
+        assertEquals(4, items[0].quality);
+    }
+
+
+
+
 
 
 
