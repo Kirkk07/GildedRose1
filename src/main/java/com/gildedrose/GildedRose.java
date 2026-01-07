@@ -23,8 +23,21 @@ class GildedRose {
     private void updateItem(Item item) {
         if (isNormalItem(item)) {
             updateNormalItem(item);
+        } else if (item.name.equals(AGED_BRIE)) {
+            updateAgedBrie(item);
+        } else if (item.name.equals(BACKSTAGE)) {
+            updateBackstagePass(item);
+        }
+
+        if (!item.name.equals(SULFURAS)) {
+            item.sellIn = item.sellIn - 1;
+        }
+
+        if (item.sellIn < 0) {
+            updateExpiredItem(item);
         }
     }
+
     private boolean isNormalItem(Item item) {
         return item.name.equals(elixir)
                 || item.name.equals(DexterityVest);
@@ -36,7 +49,39 @@ class GildedRose {
             item.quality = item.quality - 1;
         }
     }
+    private void updateAgedBrie(Item item) {
+        if (item.quality < 50) {
+            item.quality = item.quality + 1;
+        }
+    }
 
+    private void updateBackstagePass(Item item) {
+        if (item.quality < 50) {
+            item.quality = item.quality + 1;
+
+            if (item.sellIn < 11 && item.quality < 50) {
+                item.quality = item.quality + 1;
+            }
+
+            if (item.sellIn < 6 && item.quality < 50) {
+                item.quality = item.quality + 1;
+            }
+        }
+    }
+
+    private void updateExpiredItem(Item item) {
+        if (item.name.equals(AGED_BRIE)) {
+            if (item.quality < 50) {
+                item.quality = item.quality + 1;
+            }
+        } else if (item.name.equals(BACKSTAGE)) {
+            item.quality = 0;
+        } else {
+            if (item.quality > 0 && !item.name.equals(SULFURAS)) {
+                item.quality = item.quality - 1;
+            }
+        }
+    }
 
 }
 //    public void updateQuality() {
