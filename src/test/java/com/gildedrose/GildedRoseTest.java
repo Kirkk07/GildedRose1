@@ -16,7 +16,7 @@ class GildedRoseTest {
 @Test
 void normalItem_qualityAndSellInDecrease() {
     Item[] items = {
-            new Item("Normal Item", 10, 20)
+            new Item("Elixir of the Mongoose", 10, 20)
     };
     GildedRose app = new GildedRose(items);
 
@@ -30,7 +30,7 @@ void normalItem_qualityAndSellInDecrease() {
     @Test
     void normalItem_degradesTwiceAsFastAfterSellDate() {
         Item[] items = {
-                new Item("Normal Item", 0, 10)
+                new Item("Elixir of the Mongoose", 0, 10)
         };
         GildedRose app = new GildedRose(items);
 
@@ -42,7 +42,7 @@ void normalItem_qualityAndSellInDecrease() {
     @Test
     void quality_neverNegative() {
         Item[] items = {
-                new Item("Normal Item", 5, 0)
+                new Item("Elixir of the Mongoose", 5, 0)
         };
 
         new GildedRose(items).updateQuality();
